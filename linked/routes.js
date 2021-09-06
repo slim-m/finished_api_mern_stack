@@ -11,17 +11,29 @@ const Article = require('../models/article')
       }
    });
 
-   //single article
+   //retreive single article by _id
 
    router.get('/:articleId',async(req,res)=>{
     try { 
         //res.json(req.params.id);
-        const article = await Article.findOne({'_id':req.params.articleId})
+        const article = await Article.findOne({'title':req.params.articleId})
         res.json(article)
     } catch (error) {
         res.status(409).json(error)
     }
-})
+});
+
+//retreive sungle article by name or title
+
+router.get('/:articleTitle',async(req,res)=>{
+  try { 
+      //res.json(req.params.id);
+      const article = await Article.findOne({'title':req.params.articleTitle})
+      res.json(article)
+  } catch (error) {
+      res.status(409).json(error)
+  }
+});
 
 
 
