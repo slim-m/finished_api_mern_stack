@@ -16,7 +16,7 @@ const Article = require('../models/article')
    router.get('/:articleId',async(req,res)=>{
     try { 
         //res.json(req.params.id);
-        const article = await Article.findOne({'title':req.params.articleId})
+        const article = await Article.findById(req.params.articleId)
         res.json(article)
     } catch (error) {
         res.status(409).json(error)
@@ -25,10 +25,10 @@ const Article = require('../models/article')
 
 //retreive sungle article by name or title
 
-router.get('/:articleTitle',async(req,res)=>{
+router.get('/title/:articleTitle',async(req,res)=>{
   try { 
       //res.json(req.params.id);
-      const article = await Article.findOne({'title':req.params.articleTitle})
+      const article = await Article.find({'title':req.params.articleTitle})
       res.json(article)
   } catch (error) {
       res.status(409).json(error)
